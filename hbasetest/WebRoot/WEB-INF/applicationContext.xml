@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+
+	
+	<bean id="hbaseDaoImpl" class="impl.HbaseDaoImpl">
+		
+	</bean>
+	
+	<bean id="hdService" class="services.HDService">
+		<property name="hbaseDao" ref="hbaseDaoImpl"></property>
+	</bean>
+	
+	<bean id="hdAction" class="action.HDAction" scope="prototype">
+		<property name="hdservice" ref="hdService"></property>
+	</bean>
+	
+	<bean id="carService" class="services.CarService">
+		<property name="hbaseDao" ref="hbaseDaoImpl"></property>
+	</bean>
+	
+	<bean id="carAction" class="action.CarAction" scope="prototype">
+		<property name="carservice" ref="carService"></property>
+	</bean>
+
+</beans>
